@@ -24,13 +24,14 @@ export interface ReceivedInputProps {
 	value: string;
 	placeholder: string;
 	error: {
-		isError: boolean,
-		errorText: string
+		isError: boolean;
+		errorText: string;
 	};
 	options: optionItemProps[];
 	valueHandler: (val: string) => void;
 }
 
+// Hoc wrapper function
 function withKeyboardNavigation<P extends ReceivedInputProps>(WrappedComponent: React.ComponentType<P>) {
 	return (props: Omit<P, keyof InjectedInputProps>) => {
 		// To preserve previous value
@@ -164,7 +165,8 @@ function withKeyboardNavigation<P extends ReceivedInputProps>(WrappedComponent: 
 				setActiveIndex(-1)
 			}
 
-			//eslint-disable-next-line
+			// Done intentionally
+			// eslint-disable-next-line
 		}, [isActive])
 
 		// For only to run when value updates, while writing
