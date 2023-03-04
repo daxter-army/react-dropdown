@@ -17,6 +17,7 @@ export interface InjectedInputProps {
 	onClickItemHandler: (item: optionItemProps, idx: number) => void;
 	isMouseHoverAllowedHandler: React.Dispatch<React.SetStateAction<boolean>>;
 	optionItemsRef: React.MutableRefObject<React.MutableRefObject<HTMLLIElement>[]>;
+	focusIndexHandler: React.Dispatch<React.SetStateAction<number>>;
 }
 
 // Props getting getting from the parent component
@@ -29,6 +30,10 @@ export interface ReceivedInputProps {
 	};
 	options: optionItemProps[];
 	valueHandler: (val: string) => void;
+	validator?: (val: string) => boolean;
+	customInputStyles?: React.CSSProperties;
+	customDropdownStyles?: React.CSSProperties;
+	customDropdownItemStyles?: React.CSSProperties;
 }
 
 // Hoc wrapper function
@@ -99,8 +104,9 @@ function withKeyboardNavigation<P extends ReceivedInputProps>(WrappedComponent: 
 					optionsRef.current?.scrollBy(0, dropdownClientHeight - scrollDiff)
 				}
 
-				setFocusIndex(focusIndex - 1)
-				props.valueHandler(props.options[focusIndex - 1].label)
+				const operation = focusIndex === -1 ? activeIndex - 1 : focusIndex - 1
+				setFocusIndex(operation)
+				props.valueHandler(props.options[operation].label)
 				return
 			}
 			else if (e.key.toLowerCase() === "arrowdown") {
@@ -127,8 +133,9 @@ function withKeyboardNavigation<P extends ReceivedInputProps>(WrappedComponent: 
 					optionsRef.current?.scrollBy(0, scrollDiff - dropdownClientHeight)
 				}
 
-				setFocusIndex(focusIndex + 1)
-				props.valueHandler(props.options[focusIndex + 1].label)
+				const operation = focusIndex === -1 ? activeIndex + 1 : focusIndex + 1
+				setFocusIndex(operation)
+				props.valueHandler(props.options[operation].label)
 
 				return
 			}
@@ -136,7 +143,8 @@ function withKeyboardNavigation<P extends ReceivedInputProps>(WrappedComponent: 
 				// Do not update scroll when value changes from here
 				scrollLock.current = true
 				// Pointer events none for the list
-				setIsMouseHoverAllowed(false)
+				if (focusIndex === -1) return
+				setIsMouseHoverAllowed(true)
 				props.valueHandler(props.options[focusIndex].label)
 				setIsActive(false)
 				inputRef.current?.blur()
@@ -192,6 +200,7 @@ function withKeyboardNavigation<P extends ReceivedInputProps>(WrappedComponent: 
 			optionsRef={optionsRef}
 			focusIndex={focusIndex}
 			activeIndex={activeIndex}
+			focusIndexHandler={setFocusIndex}
 			isActiveHandler={setIsActive}
 			optionItemsRef={optionItemsRef}
 			prevValue={cachedValueRef.current}

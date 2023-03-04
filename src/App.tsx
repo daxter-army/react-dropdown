@@ -11,16 +11,16 @@ export type optionItemProps = {
 function App() {
   const [string, setString] = useState<string>("")
   const [options,] = useState<optionItemProps[]>([
-    { id: 1, label: 'Label 0' },
-    { id: 2, label: 'Label 1' },
-    { id: 3, label: 'Label 2' },
-    { id: 4, label: 'Label 3' },
-    { id: 5, label: 'Label 4' },
-    { id: 6, label: 'label 5' },
-    { id: 7, label: 'label 6' },
-    { id: 8, label: 'label 7' },
-    { id: 9, label: 'label 8' },
-    { id: 10, label: 'label 9' },
+    { id: 1, label: 'Grinning face 😀' },
+    { id: 2, label: 'Grinning face with big eyes 😃	' },
+    { id: 3, label: 'Beaming face with smiling eyes 😁' },
+    { id: 4, label: 'Smiling face with halo 😇' },
+    { id: 5, label: 'Star-struck 🤩' },
+    { id: 6, label: 'label 5 🤪' },
+    { id: 7, label: 'Face in clouds 😶‍🌫️' },
+    { id: 8, label: 'Relieved face 😌' },
+    { id: 9, label: 'Miling face with sunglasses 😎' },
+    { id: 10, label: 'Alien monster 👾' },
   ])
 
   const inputHandler = (val: string) => {
@@ -30,13 +30,22 @@ function App() {
 
   return (
     <S.App>
-      <Input
-        value={string}
-        options={options}
-        placeholder="Placeholder"
-        valueHandler={inputHandler}
-        error={{ isError: true, errorText: "Error" }}
-      />
+      <S.ContentCtr>
+        <h1>react-dropdown<br /> with <kbd>{`<keyboard/>`}</kbd> navigation</h1>
+        <br />
+        <p>A completely customisable React dropdown component, <br />equipped with keyboard navigation support</p>
+        <br /><br />
+        <Input
+          value={string}
+          options={options}
+          valueHandler={inputHandler}
+          // validator={(val) => val.includes("hel")}
+          placeholder="Type or select value here. . ."
+          error={{ isError: false, errorText: "Error" }}
+        // customInputStyles={{}}
+        // customDropdownItemStyles={{}}
+        />
+      </S.ContentCtr>
     </S.App>
   );
 }
