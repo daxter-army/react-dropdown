@@ -1,0 +1,1 @@
+{"version":3,"file":"static/css/main.c79877f4.css","mappings":"AAAA,EAGE,qBAAsB,CAFtB,QAAW,CACX,SAEF,CAEA,oBAIE,8BACF","sources":["index.css"],"sourcesContent":["* {\n  margin: 0px;\n  padding: 0px;\n  box-sizing: border-box;\n}\n\nbody,\na,\ninput,\nbutton {\n  font-family: 'DM Sans', sans-serif;\n}"],"names":[],"sourceRoot":""}
