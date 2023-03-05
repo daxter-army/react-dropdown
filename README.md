@@ -3,4 +3,4 @@
 
 * For documentation, [visit this github repository](https://www.github.com/daxter-army/react-beautiful-dropdown) or [npm packages repository](https://www.npmjs.com/package/react-beautiful-dropdown).
 
-* Live Demo: [Visit here](https://github.com/daxter-army/react-beautiful-dropdown).
+* Live Demo: [Visit here](https://github.com/daxter-army/react-dropdown).
