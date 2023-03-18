@@ -37,8 +37,8 @@ const Input: React.FC<InputProps> = ({
 	const dropdownRef = useRef([inputRef, optionsRef])
 	useOutsideClick(dropdownRef, () => {
 		if (isActive) {
-			console.log("RUNNING")
-			valueHandler(prevValue)
+			// TO ONLY CHANGE WHEN THE VALUE IS CHANGED
+			if (activeIndex !== focusIndex) valueHandler(prevValue)
 			isActiveHandler(false)
 			inputRef.current?.blur()
 		}
